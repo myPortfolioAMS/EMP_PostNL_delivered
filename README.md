@@ -27,8 +27,6 @@ This assignment demonstrates an **AWS serverless architecture** built using **AW
 11. [Stay in Touch](#stay-in-touch)
 12. [License](#license)
 
-Design Decisions Why Cognito instead of Auth 
-
 ---
 ### 2. Architecture / Infrastructure
 
