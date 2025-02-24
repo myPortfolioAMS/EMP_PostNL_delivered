@@ -1,0 +1,89 @@
+config:
+  target: "https://2obxofl1l7.execute-api.eu-central-1.amazonaws.com/"
+  phases:
+    - duration: 30
+      arrivalRate: 300
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - flow:
+      - post:
+          url: "/prod/eventProducer"
+          json:
+            eventId: "{{ $randomNumber(100000,999999) }}"
+            issuer: "WS001"
+            detailType: "ParcelEvent-COLLECTION"
+            zipcode_destination: "2521CA"
+            street_destination: "Waldorpstraat"
+            house_number_destination: "3"
+            city_of_destination: "Den Haag"
+            country_of_destination: "NL"
+            isPriority: false
+            isInsured: false
+            isRegistered: true
+            isReRouting: false
+            isReturning: false
+            track_and_trace: 3S{{ $randomNumber(100000,999999) }}"
+            package_box_type: "type1"
+            parcel_weight: 2.5
+            execution_status: "on time"
+            current_phase: "COLLECTION"
+            execution_plan: 
+              - step: "COLLECTION"
+                location: "1181 CR - Amstelveen"    							
+                status: "completed"
+                timestamp: "2025-02-25T08:30:00Z"
+            dueDate: "2025-02-26T08:30:00Z"
+            timestamp: "2025-02-25T08:30:00Z
+
+            eventId: "{{ $randomNumber(100000,999999) }}"
+            issuer: "WS001"
+            detailType: "ParcelEvent"
+            zipcode_destination: "1181CR"
+            street_destination: "Tiengemeten"
+            house_number_destination: "125"
+            city_of_destination: "Amstelveen"
+            country_of_destination: "NL"
+            isPriority: true
+            isInsured: false
+            isRegistered: true
+            isReRouting: false
+            isReturning: false
+            track_and_trace: "3S{{ $randomNumber(100000,999999) }}"
+            package_box_type: "type1"
+            parcel_weight: 2.5
+            execution_status: "on time"
+            current_phase: "Collection"
+            execution_plan:
+              - step: "COLLECTION"
+                location: "AMS01"
+                status: "completed"
+                timestamp: "2025-02-13T08:30:00Z"
+              - step: "FIRST_SORTING"
+                location: "RONKIN_01"
+                status: "completed"
+                timestamp: "2025-02-13T10:10:00Z"
+              - step: "CROSS_DOCKING"
+                location: "CD_21"
+                status: "pending"
+                timestamp: "2025-02-13T15:10:00Z"
+              - step: "SECOND_SORTING"
+                location: "TILBURG_01"
+                status: "pending"
+                timestamp: "2025-02-13T18:10:00Z"
+              - step: "DISTRIBUTION"
+                location: "DISTRIBUTION_77"
+                status: "pending"
+                timestamp: "2025-02-14T06:10:00Z"
+              - step: "FINAL_CONSUMER"
+                location: "Customer Address"
+                status: "pending"
+                timestamp: "2025-02-14T08:10:00Z"
+            dueDate: "2025-02-14T08:30:00Z"
+            timestamp: "2025-02-13T08:30:00Z"
+
+  - flow:
+      - get:
+          url: "/prod/events/fromDB-parcel/{{ $randomNumber(100000,999999) }}"

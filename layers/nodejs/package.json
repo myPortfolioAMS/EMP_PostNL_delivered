@@ -1,0 +1,7 @@
+{
+  "name": "lambda-layer",
+  "version": "1.0.0",
+  "dependencies": {
+    "uuid": "^11.0.5"
+  }
+}
